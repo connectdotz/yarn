@@ -166,9 +166,8 @@ test('Only top level (after hoisting) bin links should be linked', (): Promise<v
   });
 });
 
-// Scenario: Transitive dependency having bin link with a name that's conflicting with that of a direct dependency.
-// Behavior: a-dep and b-dep is linked in node_modules/.bin rather than c-dep and d-dep
 describe('with nohoist', () => {
+  // address https://github.com/yarnpkg/yarn/issues/5487
   test('nohoist bin should be linked to its own local module', (): Promise<void> => {
     return runInstall({binLinks: true}, 'install-bin-links-nohoist', async config => {
       // make sure all links are created at the right locations and executed correctly
